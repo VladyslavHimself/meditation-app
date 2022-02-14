@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
+import { ChakraProvider } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
   return (
-     <>
-      <h1>Hello World!</h1>
-     </>
+    <ChakraProvider>
+      <h1>hello world</h1>
+    </ChakraProvider>
   )
 }
 
