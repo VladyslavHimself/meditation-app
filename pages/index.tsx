@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-
+import { InputForm } from '../src/components/InputForm/component';
 
 const Home: NextPage = () => {
   return (
-    <h1> Hello</h1>
+    <InputForm title='Metaweather' /> 
   )
 }
 
