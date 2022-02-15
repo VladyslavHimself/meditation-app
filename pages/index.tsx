@@ -3,7 +3,7 @@ import { InputForm } from '../src/components/InputForm/component';
 
 const Home: NextPage = () => {
   return (
-    <InputForm title='Metaweather' /> 
+    <InputForm title='Medidation' /> 
   )
 }
 
