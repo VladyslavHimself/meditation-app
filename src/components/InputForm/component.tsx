@@ -8,18 +8,6 @@ interface IInputForm {
 }
 export const InputForm = ({ title, children }: IInputForm ): JSX.Element => {
 
-  const register = async () => {
-
-  };
-
-  const login = async () => {
-
-  };
-
-  const logout = async () => {
-
-  };
-
   return (
     <Flex align={'center'} justifyContent={'center'} w={"100vw"} h={'100vh'}>
       <Box boxShadow={'xl'} border='.1px solid teal' rounded='lg' p={'100px 50px'}>

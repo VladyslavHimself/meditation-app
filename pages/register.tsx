@@ -5,6 +5,10 @@ import { useState } from 'react';
 import { InputForm } from '../src/components/InputForm/component';
 import { InputField } from '../src/Ui/InputField/component';
 
+import { auth  } from '../src/firebase-config';
+
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 const Home: NextPage = () => {
 
   const router = useRouter();
@@ -12,9 +16,16 @@ const Home: NextPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [repeatPass, setRepeatPass] = useState<string>('');
-
-  const onRegisterHandler = () => {
-    router.push('/register');
+  const onRegisterHandler = async () => {
+    if (password === repeatPass) {
+      try {
+        const user = await createUserWithEmailAndPassword(auth, email, password); 
+       } catch (error) {
+         console.log(error);
+       }
+    } else {
+      alert('Passwords does not match');
+    }
   }
 
   return (
@@ -24,7 +35,7 @@ const Home: NextPage = () => {
          inputValue={email}
          setInputValue={setEmail} 
         />
-        
+
         <InputField
          name={'Password'}
          type={'password'}
