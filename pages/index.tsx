@@ -1,8 +1,8 @@
 import { Button, Flex } from '@chakra-ui/react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputForm } from '../src/components/InputForm/component';
 import { auth } from '../src/firebase-config';
 import { InputField } from '../src/Ui/InputField/component';
@@ -11,6 +11,8 @@ const Home: NextPage = () => {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [user, setUser] = useState<any>({});
+
 
   const router = useRouter();
 
@@ -20,11 +22,23 @@ const Home: NextPage = () => {
 
   const onLoginHandler = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password); 
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      router.push('/dashboard');
      } catch (error) {
        console.log(error);
      }
   }
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+    console.log(user);
+  });
+
+  useEffect(() => {
+    if (user?.uid) {
+      router.push('/dashboard');
+    }
+  }, [router, user]);
 
   return (
 

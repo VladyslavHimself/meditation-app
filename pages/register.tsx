@@ -9,7 +9,7 @@ import { auth  } from '../src/firebase-config';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-const Home: NextPage = () => {
+const Register: NextPage = () => {
 
   const router = useRouter();
 
@@ -19,7 +19,8 @@ const Home: NextPage = () => {
   const onRegisterHandler = async () => {
     if (password === repeatPass) {
       try {
-        const user = await createUserWithEmailAndPassword(auth, email, password); 
+        const user = await createUserWithEmailAndPassword(auth, email, password);
+        router.push('/');
        } catch (error) {
          console.log(error);
        }
@@ -57,4 +58,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home;
+export default Register;
