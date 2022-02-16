@@ -13,13 +13,13 @@ const Home: NextPage = () => {
   }
 
   return (
-    <InputForm title='Meditation'>
+    <InputForm title='Register'>
         <InputField name={'E-mail'} />
         <InputField name={'Password'} type={'password'}/>
+        <InputField name={'Repeat password'} type={'password'}/>
         
-        <Flex w={'100%'} justifyContent={'space-between'}>
-          <Button mt={'5px'}> Login </Button>
-          <Button mt={'5px'} onClick={onRegisterHandler}> Register </Button>
+        <Flex w={'100%'} justifyContent={'center'}>
+          <Button mt={'5px'} onClick={onRegisterHandler}> Sign Up </Button>
         </Flex>
     </InputForm>
   )
