@@ -1,4 +1,4 @@
-import { Button, Flex } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -12,6 +12,8 @@ const Home: NextPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [user, setUser] = useState<any>({});
+
+  const [isWrongPassword, setIsWrongPassword] = useState<boolean>(false);
 
   const [isLoadingLogin, setIsLoadingLogin] = useState<boolean>(false);
 
@@ -27,14 +29,16 @@ const Home: NextPage = () => {
       const user = await signInWithEmailAndPassword(auth, email, password);
       await setIsLoadingLogin(false);
       router.push('/dashboard');
-     } catch (error) {
-       console.log(error);
+     } catch (e: any) {
+       if (e.message === 'Firebase: Error (auth/invalid-email).') {
+        await setIsLoadingLogin(false);
+        await setIsWrongPassword(true);
+       }
      }
   }
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-    console.log(user);
   });
 
   useEffect(() => {
@@ -65,6 +69,7 @@ const Home: NextPage = () => {
             <Button mt={'5px'} onClick={onLoginHandler} isLoading={isLoadingLogin}> Login </Button>
             <Button mt={'5px'} onClick={onRegisterHandler}> Register </Button>
           </Flex>
+          { isWrongPassword ? <Text fontSize='sm' color='red.300'>Wrong e-mail or password!</Text> : undefined }
       </InputForm>
     </>
   )
