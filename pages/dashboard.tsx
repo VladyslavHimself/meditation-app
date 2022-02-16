@@ -1,11 +1,14 @@
 import { Box, Button, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Navigation } from '../src/components/Navigation/component';
 import { auth } from '../src/firebase-config';
 
 const Dashboard: NextPage = () => {
+
+  const router = useRouter();
 
   const [user, setUser] = useState<any>();
 
@@ -15,6 +18,7 @@ const Dashboard: NextPage = () => {
 
   const onLogoutHandler = () => {
     signOut(auth);
+    router.push('/');
   }
 
   return (
