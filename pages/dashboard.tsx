@@ -2,6 +2,7 @@ import { Box, Button, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
+import { Navigation } from '../src/components/Navigation/component';
 import { auth } from '../src/firebase-config';
 
 const Dashboard: NextPage = () => {
@@ -17,15 +18,20 @@ const Dashboard: NextPage = () => {
   }
 
   return (
-    <Box background={'#3880ff'} w={'100%'} h={'50px'} display='flex' justifyContent={'center'}>
-      <Flex justifyContent={'space-between'} alignItems={'center'} w={'90%'} h={'inherit'}>
+    <>
+      <Navigation>
         <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
-        <Flex justifyContent='space-around' alignItems='center'>
-          <Text fontSize='m' color='white' pr='10px'>{user?.email}</Text>
-          <Button onClick={onLogoutHandler}>Logout</Button>
-        </Flex>
-      </Flex>
-    </Box>
+          <Flex justifyContent='space-around' alignItems='center'>
+            <Text fontSize='m' color='white' pr='10px'>{user?.email}</Text>
+            <Button mr='10px' background={'#3880ff'} color={'#fff'}> [+] Add meditation</Button>
+            <Button onClick={onLogoutHandler} variant='solid'>Logout</Button>
+          </Flex>
+      </Navigation>
+
+      <Box>
+        <Text>Hello world</Text>
+      </Box>
+    </>
   )
 };
 

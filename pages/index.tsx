@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const [password, setPassword] = useState<string>('');
   const [user, setUser] = useState<any>({});
 
+  const [isLoadingLogin, setIsLoadingLogin] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -22,7 +23,9 @@ const Home: NextPage = () => {
 
   const onLoginHandler = async () => {
     try {
+      setIsLoadingLogin(true);
       const user = await signInWithEmailAndPassword(auth, email, password);
+      await setIsLoadingLogin(false);
       router.push('/dashboard');
      } catch (error) {
        console.log(error);
@@ -59,7 +62,7 @@ const Home: NextPage = () => {
           />
           
           <Flex w={'100%'} justifyContent={'space-between'}>
-            <Button mt={'5px'} onClick={onLoginHandler}> Login </Button>
+            <Button mt={'5px'} onClick={onLoginHandler} isLoading={isLoadingLogin}> Login </Button>
             <Button mt={'5px'} onClick={onRegisterHandler}> Register </Button>
           </Flex>
       </InputForm>
