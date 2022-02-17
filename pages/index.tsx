@@ -14,7 +14,6 @@ const Home: NextPage = () => {
   const [user, setUser] = useState<any>({});
 
   const [isWrongPassword, setIsWrongPassword] = useState<boolean>(false);
-
   const [isLoadingLogin, setIsLoadingLogin] = useState<boolean>(false);
 
   const router = useRouter();
@@ -31,8 +30,11 @@ const Home: NextPage = () => {
       router.push('/dashboard');
      } catch (e: any) {
        if (e.message === 'Firebase: Error (auth/invalid-email).') {
-        await setIsLoadingLogin(false);
-        await setIsWrongPassword(true);
+         if (e.message === 'Firebase: Error (auth/user-not-found).') {
+          await setIsLoadingLogin(false);
+          await setIsWrongPassword(true);
+          await setPassword('');
+         }
        }
      }
   }
