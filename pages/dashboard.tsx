@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text} from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -32,9 +32,14 @@ const Dashboard: NextPage = () => {
           </Flex>
       </Navigation>
 
-      <Box>
-        <Text>Hello world</Text>
-      </Box>
+      <Container maxW='container.xl' mt='25px'>
+        <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
+          <Flex w='inherit' h='inherit' justifyContent='space-evenly' alignItems='center' flexDirection='column'>
+            <Button borderRadius='100px' w='150px' h='150px'>Start Meditate!</Button>
+            <Text color='white' fontSize='2xl'>00:00</Text>
+          </Flex>
+        </Box>
+      </Container>
     </>
   )
 };
