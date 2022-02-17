@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Navigation } from '../src/components/Navigation/component';
+import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { auth } from '../src/firebase-config';
 
 const Dashboard: NextPage = () => {
@@ -12,11 +13,11 @@ const Dashboard: NextPage = () => {
 
   const [user, setUser] = useState<any>();
 
-  onAuthStateChanged(auth, (currentUser) => {
+  onAuthStateChanged(auth, (currentUser): void => {
     setUser(currentUser);
   });
 
-  const onLogoutHandler = () => {
+  const onLogoutHandler = (): void => {
     signOut(auth);
     router.push('/');
   }
@@ -34,10 +35,7 @@ const Dashboard: NextPage = () => {
 
       <Container maxW='container.xl' mt='25px'>
         <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
-          <Flex w='inherit' h='inherit' justifyContent='space-evenly' alignItems='center' flexDirection='column'>
-            <Button borderRadius='100px' w='150px' h='150px'>Start Meditate!</Button>
-            <Text color='white' fontSize='2xl'>00:00</Text>
-          </Flex>
+          <QuickMeditate />
         </Box>
       </Container>
     </>
