@@ -28,14 +28,10 @@ const Home: NextPage = () => {
       const user = await signInWithEmailAndPassword(auth, email, password);
       await setIsLoadingLogin(false);
       router.push('/dashboard');
-     } catch (e: any) {
-       if (e.message === 'Firebase: Error (auth/invalid-email).') {
-         if (e.message === 'Firebase: Error (auth/user-not-found).') {
-          await setIsLoadingLogin(false);
-          await setIsWrongPassword(true);
-          await setPassword('');
-         }
-       }
+     } catch (e: any) {   
+        await setIsLoadingLogin(false);
+        await setIsWrongPassword(true);
+        await setPassword('');
      }
   }
 
