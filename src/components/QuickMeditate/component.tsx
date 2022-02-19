@@ -1,11 +1,14 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { Timer } from '../../services/Timer/timer.service';
 
 export const QuickMeditate = (): JSX.Element => {
 
-  const [seconds, setSeconds] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(5);
-  const [isTimerRun, setIsTimerRun] = useState<boolean>(false);
+  const [seconds, setSeconds] = useState<number>(0);
+  const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false)
+
+  const timer = new Timer();
 
   const convertTimeToTTformat = (time: number): string | number => {
     if (time < 10) {
@@ -18,12 +21,28 @@ export const QuickMeditate = (): JSX.Element => {
   }
 
   const onResumeTimerHandler = () => {
-    setIsTimerRun(prevState => !prevState);
-  }
+    
+    if (isTimerStarted) {
+      setIsTimerStarted(false);
+      setTimeout(() => {
+        setMinutes(5);
+        setSeconds(0);
+      }, 1000);
+    } else {
+      setIsTimerStarted(true);
+    }
+  };
+
+  const saveMeditationInDB = () => {
+    // #TODO
+  } 
 
   useEffect(() => {
-    // #TODO timer for fast meditation;  
-  }, [isTimerRun]);
+    if (isTimerStarted) {
+     minutes <= 0 && seconds <= 0 ? saveMeditationInDB()
+     : timer.tick(seconds, minutes, setSeconds, setMinutes);
+    }
+  }, [minutes, seconds, isTimerStarted])
 
   return (
     <Flex w='inherit' h='inherit' justifyContent='space-evenly' alignItems='center' flexDirection='column'>
