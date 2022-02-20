@@ -3,6 +3,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { LineChart } from '../src/components/LineChart/component';
 import { Navigation } from '../src/components/Navigation/component';
 import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { auth } from '../src/firebase-config';
@@ -33,10 +34,11 @@ const Dashboard: NextPage = () => {
           </Flex>
       </Navigation>
 
-      <Container maxW='container.xl' mt='25px'>
+      <Container maxW='container.xl' mt='25px' display='flex' justifyContent='space-evenly' alignItems='center'>
         <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
           <QuickMeditate />
         </Box>
+        <LineChart title={'Meditation monitoring'} data={undefined} />
       </Container>
     </>
   )
