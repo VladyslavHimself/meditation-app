@@ -8,6 +8,9 @@ import { Navigation } from '../src/components/Navigation/component';
 import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { auth } from '../src/firebase-config';
 
+import settingsIcon from '../src/assets/settings.svg';
+import Image from 'next/image';
+
 const Dashboard: NextPage = () => {
 
   const router = useRouter();
@@ -29,8 +32,14 @@ const Dashboard: NextPage = () => {
         <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
           <Flex justifyContent='space-around' alignItems='center'>
             <Text fontSize='m' color='white' pr='10px'>{user?.email}</Text>
-            <Button mr='10px' background={'#3880ff'} color={'#fff'}> [+] Add meditation</Button>
-            <Button onClick={onLogoutHandler} variant='solid'>Logout</Button>
+            <Button mr='10px' background={'#3880ff'} color={'#fff'}>
+              <Image src={settingsIcon} width='20px' height='20px'></Image>
+              <Text ml={'5px'}>Settings</Text>
+            </Button>
+            <Button onClick={onLogoutHandler} variant='solid'>
+              
+              Logout
+              </Button>
           </Flex>
       </Navigation>
 

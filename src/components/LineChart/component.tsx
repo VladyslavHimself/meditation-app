@@ -25,6 +25,7 @@ ChartJS.register(
   Legend
 );
 
+
 interface IProps {
   title: string,
   data: any
@@ -43,7 +44,7 @@ export const LineChart = ({ title, data }: IProps): JSX.Element => {
       },
     },
   };
-
+  
   return (
     <>
       
