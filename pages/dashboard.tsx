@@ -10,6 +10,7 @@ import { auth } from '../src/firebase-config';
 
 import settingsIcon from '../src/assets/settings.svg';
 import logoutIcon from '../src/assets/logout.svg';
+import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
 
 const Dashboard: NextPage = () => {
@@ -32,7 +33,10 @@ const Dashboard: NextPage = () => {
       <Navigation>
         <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
           <Flex justifyContent='space-around' alignItems='center'>
-            <Text fontSize='m' color='white' pr='10px'>{user?.email}</Text>
+            <Text fontSize='m' color='white' pr='10px' display='flex' alignItems='center'>
+              <Image src={userIcon} width='35px' height='35px' alt='logout-icon'></Image>
+              <Text ml={'5px'}>{user?.email}</Text>
+            </Text>
             <Button mr='10px' background={'#3880ff'} color={'#fff'}>
               <Image src={settingsIcon} width='20px' height='20px' alt='settings-icon'></Image>
               <Text ml={'5px'}>Settings</Text>
