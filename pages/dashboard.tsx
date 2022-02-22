@@ -7,31 +7,31 @@ import { LineChart } from '../src/components/LineChart/component';
 import { Navigation } from '../src/components/Navigation/component';
 import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { auth, db } from '../src/firebase-config';
-
 import settingsIcon from '../src/assets/settings.svg';
 import logoutIcon from '../src/assets/logout.svg';
 import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
-import { collection, doc, getDocs, Query } from 'firebase/firestore';
+import { collection, getDocs, Query } from 'firebase/firestore';
 
 
 const Dashboard: NextPage = () => {
-
   const router = useRouter(); 
   const [user, setUser] = useState<any>();
+  const [userData, setUserData] = useState<any>([]);
+  
 
-  const [meditations, setMeditations] = useState<any>([]);
-  const meditationCollectionRef = collection(db, '...');
 
   useEffect(() => {
     const getMeditations = async () => {
+      const meditationCollectionRef = collection(db, localStorage.getItem('email')!, 'Total_data', 'meditations');
       const data = await getDocs(meditationCollectionRef);
-      setMeditations(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-      meditations.map((meditation: any) => console.log(meditation));
+      setUserData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      userData.map((data: any) => console.log(new Date(data.createdAt.seconds * 1000)))
     };
-    const getMeditationsRepeatedly = setInterval(getMeditations, 5000);
+    getMeditations();
 
-  }, [meditations]);
+    
+  }, []);
 
   onAuthStateChanged(auth, (currentUser): void => {
     setUser(currentUser);
