@@ -41,6 +41,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (user?.uid) {
+      localStorage.setItem('email', user.email);
       router.push('/dashboard');
     }
   }, [router, user]);

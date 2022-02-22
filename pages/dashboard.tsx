@@ -6,18 +6,32 @@ import React, { useEffect, useState } from 'react';
 import { LineChart } from '../src/components/LineChart/component';
 import { Navigation } from '../src/components/Navigation/component';
 import { QuickMeditate } from '../src/components/QuickMeditate/component';
-import { auth } from '../src/firebase-config';
+import { auth, db } from '../src/firebase-config';
 
 import settingsIcon from '../src/assets/settings.svg';
 import logoutIcon from '../src/assets/logout.svg';
 import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
+import { collection, doc, getDocs, Query } from 'firebase/firestore';
+
 
 const Dashboard: NextPage = () => {
 
-  const router = useRouter();
-
+  const router = useRouter(); 
   const [user, setUser] = useState<any>();
+
+  const [meditations, setMeditations] = useState<any>([]);
+  const meditationCollectionRef = collection(db, '...');
+
+  useEffect(() => {
+    const getMeditations = async () => {
+      const data = await getDocs(meditationCollectionRef);
+      setMeditations(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      meditations.map((meditation: any) => console.log(meditation));
+    };
+    const getMeditationsRepeatedly = setInterval(getMeditations, 5000);
+
+  }, [meditations]);
 
   onAuthStateChanged(auth, (currentUser): void => {
     setUser(currentUser);

@@ -45,7 +45,7 @@ export const QuickMeditate = (): JSX.Element => {
   }, [minutes, seconds, isTimerStarted])
 
   return (
-    <Flex w='inherit' h='inherit' justifyContent='space-evenly' alignItems='center' flexDirection='column'>
+    <Flex w='inherit' h='inherit'  boxShadow={'lg'} justifyContent='space-evenly' alignItems='center' flexDirection='column'>
       <Button borderRadius='100px' w='150px' h='150px' onClick={onResumeTimerHandler}>Quick Meditate!</Button>
       <Text color='white' fontSize='2xl'>
         {convertTimeToTTformat(minutes)} 
