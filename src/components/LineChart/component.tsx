@@ -3,17 +3,6 @@ import { Line } from 'react-chartjs-2';
 import { Flex } from '@chakra-ui/react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
-const mockData = {
-  labels: [1,2,3],
-  datasets: [{
-    data: [1,2,3],
-    label: 'minutes',
-    borderColor: 'rgb(53, 162, 235)',
-    backgroundColor: 'rgba(53, 162, 235, 0.5)',
-
-  }]
-};
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
