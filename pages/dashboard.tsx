@@ -11,8 +11,7 @@ import settingsIcon from '../src/assets/settings.svg';
 import logoutIcon from '../src/assets/logout.svg';
 import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
-import { collection, getDocs, Query } from 'firebase/firestore';
-import { decode } from 'querystring';
+import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
 
 

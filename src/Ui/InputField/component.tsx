@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Input, Text } from '@chakra-ui/react';
 
 interface IInputField {

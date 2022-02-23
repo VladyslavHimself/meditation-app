@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { InputForm } from '../src/components/InputForm/component';
 import { InputField } from '../src/Ui/InputField/component';
 
-import { auth  } from '../src/firebase-config';
+import { auth } from '../src/firebase-config';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
