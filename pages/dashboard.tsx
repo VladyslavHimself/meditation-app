@@ -13,6 +13,7 @@ import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
 import { collection, getDocs, Query } from 'firebase/firestore';
 import { decode } from 'querystring';
+import { NotAuthorized } from '../src/components/NotAuthorized/component';
 
 
 const Dashboard: NextPage = () => {
@@ -76,10 +77,12 @@ const Dashboard: NextPage = () => {
   const onLogoutHandler = (): void => {
     signOut(auth);
     router.push('/');
-  }
+  };
 
   return (
-    <>
+
+    user ? (
+      <>
       <Navigation>
         <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
           <Flex justifyContent='space-around' alignItems='center'>
@@ -105,6 +108,8 @@ const Dashboard: NextPage = () => {
         <LineChart title={'Meditation monitoring'} data={data} />
       </Container>
     </>
+    ) : <NotAuthorized />
+    
   )
 };
 
