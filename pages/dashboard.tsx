@@ -1,5 +1,5 @@
 import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
-import { NextOrObserver, onAuthStateChanged, signOut, User, User } from 'firebase/auth';
+import { NextOrObserver, onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -11,9 +11,14 @@ import settingsIcon from '../src/assets/settings.svg';
 import logoutIcon from '../src/assets/logout.svg';
 import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
-import { collection, Firestore, getDocs } from 'firebase/firestore';
+import { collection, DocumentData, FirestoreDataConverter, getDocs, QuerySnapshot } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
 
+interface IMeditations {
+  id: string,
+  minutes: number,
+  createdAt: Date,
+}
 
 const Dashboard: NextPage = () => {
   const router = useRouter(); 
@@ -30,32 +35,32 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     const getMeditations = async () => {
+
+      const userEmail: string = localStorage.getItem('email')!;
       
-      const meditationCollectionRef = collection(db, localStorage.getItem('email')!, 'Total_data', 'meditations');
-      const data = await getDocs(meditationCollectionRef);
-      const userData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-
+      const meditationListCollectionRef = collection(db, userEmail, 'Total_data', 'meditations');
+      const unsortedData = await getDocs(meditationListCollectionRef);
+      const userMeditations: { id: string }[] = unsortedData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      
       const formatDate = () => {
-        const dates = userData.map((data: any) => new Date(data.createdAt?.seconds * 1000));
+        const dates: Date[] = userMeditations.map((data: any) => new Date(data.createdAt?.seconds * 1000));
         
-        const formatedDates = dates.map((date: any) => {
-          const datee = new Date(date);
-          const month = datee.getUTCMonth() + 1;
-          const day = datee.getUTCDate();
-          const year = datee.getUTCFullYear();
+        const formatDate: string[] = dates.map((date: any) => {
+          const unformatDate = new Date(date);
+          const month = unformatDate.getUTCMonth() + 1;
+          const day = unformatDate.getUTCDate();
+          const year = unformatDate.getUTCFullYear();
 
-          const data = `${day}/${month}/${year}`;
+          return `${day}/${month}/${year}`;
+        });
 
-          return data;
-        })
-
-        return [...formatedDates];
-      }
+        return [...formatDate];
+      };
 
        setData({
         labels: formatDate(),
         datasets: [{
-          data: [...userData.map((data: any) => data.minutes)],
+          data: [...userMeditations.map((data: any) => data.minutes)],
           label: 'minutes',
           borderColor: 'rgb(53, 162, 235)',
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -64,7 +69,6 @@ const Dashboard: NextPage = () => {
     };
 
     getMeditations();
-    
   }, []);
 
   onAuthStateChanged(auth, (currentUser): void => {
