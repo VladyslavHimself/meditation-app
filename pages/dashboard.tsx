@@ -38,7 +38,7 @@ const Dashboard: NextPage = () => {
       const userData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
       const formatDate = () => {
-        const dates = userData.map((data: any) => new Date(data.createdAt.seconds * 1000));
+        const dates = userData.map((data: any) => new Date(data.createdAt?.seconds * 1000));
         
         const formatedDates = dates.map((date: any) => {
           const datee = new Date(date);

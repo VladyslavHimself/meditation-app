@@ -13,7 +13,6 @@ ChartJS.register(
   Legend
 );
 
-
 interface IProps {
   title: string,
   data: any
