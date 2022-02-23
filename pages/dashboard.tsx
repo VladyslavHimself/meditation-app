@@ -12,24 +12,60 @@ import logoutIcon from '../src/assets/logout.svg';
 import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
 import { collection, getDocs, Query } from 'firebase/firestore';
+import { decode } from 'querystring';
 
 
 const Dashboard: NextPage = () => {
   const router = useRouter(); 
   const [user, setUser] = useState<any>();
-  const [userData, setUserData] = useState<any>([]);
-  
-
+  const [data, setData] = useState<any>({
+    labels: ['empty'],
+    datasets: [{
+      data: [0],
+      label: 'minutes',
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    }]
+  });
 
   useEffect(() => {
+
+
     const getMeditations = async () => {
+      
       const meditationCollectionRef = collection(db, localStorage.getItem('email')!, 'Total_data', 'meditations');
       const data = await getDocs(meditationCollectionRef);
-      setUserData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      userData.map((data: any) => console.log(new Date(data.createdAt.seconds * 1000)))
-    };
-    getMeditations();
+      const userData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
+      const formatDate = () => {
+        const dates = userData.map((data: any) => new Date(data.createdAt.seconds * 1000));
+        
+        const formatedDates = dates.map((date: any) => {
+          const datee = new Date(date);
+          const month = datee.getUTCMonth() + 1;
+          const day = datee.getUTCDate();
+          const year = datee.getUTCFullYear();
+
+          const data = `${day}/${month}/${year}`;
+
+          return data;
+        })
+
+        return [...formatedDates];
+      }
+
+       setData({
+        labels: formatDate(),
+        datasets: [{
+          data: [...userData.map((data: any) => data.minutes)],
+          label: 'minutes',
+          borderColor: 'rgb(53, 162, 235)',
+          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        }]
+      });
+    };
+
+    getMeditations();
     
   }, []);
 
@@ -66,7 +102,7 @@ const Dashboard: NextPage = () => {
         <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
           <QuickMeditate />
         </Box>
-        <LineChart title={'Meditation monitoring'} data={undefined} />
+        <LineChart title={'Meditation monitoring'} data={data} />
       </Container>
     </>
   )
