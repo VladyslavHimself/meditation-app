@@ -14,12 +14,6 @@ import Image from 'next/image';
 import { collection, DocumentData, FirestoreDataConverter, getDocs, QuerySnapshot } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
 
-interface IMeditations {
-  id: string,
-  minutes: number,
-  createdAt: Date,
-}
-
 const Dashboard: NextPage = () => {
   const router = useRouter(); 
   const [user, setUser] = useState<User>();
