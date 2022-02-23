@@ -16,10 +16,11 @@ const Register: NextPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [repeatPass, setRepeatPass] = useState<string>('');
+
   const onRegisterHandler = async () => {
     if (password === repeatPass) {
       try {
-        const user = await createUserWithEmailAndPassword(auth, email, password);
+        await createUserWithEmailAndPassword(auth, email, password);
         router.push('/');
        } catch (error) {
          console.log(error);
@@ -38,10 +39,10 @@ const Register: NextPage = () => {
         />
 
         <InputField
-         name={'Password'}
-         type={'password'}
-         inputValue={password}
-         setInputValue={setPassword} 
+          name={'Password'}
+          type={'password'}
+          inputValue={password}
+          setInputValue={setPassword} 
         />
 
         <InputField
