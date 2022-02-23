@@ -1,5 +1,5 @@
 import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
-import { NextOrObserver, onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -11,13 +11,23 @@ import settingsIcon from '../src/assets/settings.svg';
 import logoutIcon from '../src/assets/logout.svg';
 import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
-import { collection, DocumentData, FirestoreDataConverter, getDocs, QuerySnapshot } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
+
+interface IChartData {
+  labels: string[];
+  datasets: {
+      data: number[];
+      label: string;
+      borderColor: string;
+      backgroundColor: string;
+  }[];
+}
 
 const Dashboard: NextPage = () => {
   const router = useRouter(); 
   const [user, setUser] = useState<User>();
-  const [data, setData] = useState<any>({
+  const [meditationData, setMeditationData] = useState<IChartData>({
     labels: ['empty'],
     datasets: [{
       data: [0],
@@ -51,7 +61,7 @@ const Dashboard: NextPage = () => {
         return [...formatDate];
       };
 
-       setData({
+       setMeditationData({
         labels: formatDate(),
         datasets: [{
           data: [...userMeditations.map((data: any) => data.minutes)],
@@ -99,7 +109,7 @@ const Dashboard: NextPage = () => {
           <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
             <QuickMeditate />
           </Box>
-          <LineChart title={'Meditation monitoring'} data={data} />
+          <LineChart title={'Meditation monitoring'} data={meditationData} />
         </Container>
       </>
     ) : <NotAuthorized />
