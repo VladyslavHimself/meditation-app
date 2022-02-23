@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   const onLoginHandler = async () => {
     try {
       setIsLoadingLogin(true);
-      const user = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       await setIsLoadingLogin(false);
       router.push('/dashboard');
      } catch (e: any) {   

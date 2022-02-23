@@ -1467,6 +1467,13 @@
   "resolved" "https://registry.npmjs.org/@tootallnate/once/-/once-1.1.2.tgz"
   "version" "1.1.2"
 
+"@types/firebase@^3.2.1":
+  "integrity" "sha512-G8XgHMu2jHlElfc2xVNaYP50F0qrqeTCjgeG1v5b4SRwWG4XKC4fCuEdVZuZaMRmVygcnbRZBAo9O7RsDvmkGQ=="
+  "resolved" "https://registry.npmjs.org/@types/firebase/-/firebase-3.2.1.tgz"
+  "version" "3.2.1"
+  dependencies:
+    "firebase" "*"
+
 "@types/json5@^0.0.29":
   "integrity" "sha1-7ihweulOEdK4J7y+UnC86n8+ce4="
   "resolved" "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
@@ -2531,7 +2538,7 @@
     "locate-path" "^5.0.0"
     "path-exists" "^4.0.0"
 
-"firebase@^9.6.6":
+"firebase@*", "firebase@^9.6.6":
   "integrity" "sha512-roF8aQ8D7YOI0txUNm45BQJZG5t4Xip2lg/V0u6BxnScaefuo9T6baR70soWMecCMQYys5h3OKNLlCpnC5PJxg=="
   "resolved" "https://registry.npmjs.org/firebase/-/firebase-9.6.6.tgz"
   "version" "9.6.6"

@@ -1,6 +1,5 @@
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import { InputField } from '../../Ui/InputField/component';
 
 interface IInputForm {
  title: string,
