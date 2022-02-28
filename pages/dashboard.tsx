@@ -13,7 +13,7 @@ import userIcon from '../src/assets/user.svg';
 import Image from 'next/image';
 import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
-
+import classes from '../src/scss/dashboard.module.scss';
 interface IChartData {
   labels: string[];
   datasets: {
@@ -25,6 +25,7 @@ interface IChartData {
 }
 
 const Dashboard: NextPage = () => {
+
   const router = useRouter(); 
   const [user, setUser] = useState<User>();
   const [meditationData, setMeditationData] = useState<IChartData>({
@@ -84,37 +85,43 @@ const Dashboard: NextPage = () => {
     router.push('/');
   };
 
+
   return (
     user ? (
-      <>
-        <Navigation>
-          <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
-            <Flex justifyContent='space-around' alignItems='center'>
-              <Text fontSize='m' color='white' pr='10px' display='flex' alignItems='center'>
-                <Image src={userIcon} width='35px' height='35px' alt='logout-icon'></Image>
-                <Text ml={'5px'}>{user?.email}</Text>
-              </Text>
-              <Button mr='10px' background={'#3880ff'} color={'#fff'}>
-                <Image src={settingsIcon} width='20px' height='20px' alt='settings-icon'></Image>
-                <Text ml={'5px'}>Settings</Text>
-              </Button>
-              <Button onClick={onLogoutHandler} variant='solid'>
-                <Image src={logoutIcon} width='20px' height='20px' alt='logout-icon'></Image>
-                <Text ml={'5px'}>Logout</Text>
-              </Button>
-            </Flex>
-        </Navigation>
+     <div className={classes.dashboard}>
 
-        <Container maxW='container.xl' mt='25px' display='flex' justifyContent='space-evenly' alignItems='center'>
-          <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
-            <QuickMeditate />
-          </Box>
-          <LineChart title={'Meditation monitoring'} data={meditationData} />
-        </Container>
-      </>
+     </div>
     ) : <NotAuthorized />
-    
   )
 };
 
 export default Dashboard;
+
+
+
+// ------------ OLD UI ------------- //
+//
+// <Navigation>
+//   <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
+//   <Flex justifyContent='space-around' alignItems='center'>
+//     <Text fontSize='m' color='white' pr='10px' display='flex' alignItems='center'>
+//       <Image src={userIcon} width='35px' height='35px' alt='logout-icon'></Image>
+//       <Text ml={'5px'}>{user?.email}</Text>
+//     </Text>
+//     <Button mr='10px' background={'#3880ff'} color={'#fff'}>
+//       <Image src={settingsIcon} width='20px' height='20px' alt='settings-icon'></Image>
+//       <Text ml={'5px'}>Settings</Text>
+//     </Button>
+//     <Button onClick={onLogoutHandler} variant='solid'>
+//       <Image src={logoutIcon} width='20px' height='20px' alt='logout-icon'></Image>
+//       <Text ml={'5px'}>Logout</Text>
+//     </Button>
+//   </Flex>
+// </Navigation>
+//
+// <Container maxW='container.xl' mt='25px' display='flex' justifyContent='space-evenly' alignItems='center'>
+//   <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
+//     <QuickMeditate />
+//   </Box>
+//   <LineChart title={'Meditation monitoring'} data={meditationData} />
+// </Container>
