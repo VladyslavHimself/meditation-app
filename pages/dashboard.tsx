@@ -89,7 +89,7 @@ const Dashboard: NextPage = () => {
   return (
     user ? (
      <div className={classes.dashboard}>
-
+      <div className={classes.mountains} />
      </div>
     ) : <NotAuthorized />
   )
