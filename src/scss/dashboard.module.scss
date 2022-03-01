@@ -14,34 +14,3 @@
   background: url('../assets/mountains.png') no-repeat 100% 100%;
   mix-blend-mode: soft-light;
 }
-
-.menu {
-  position: relative;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  background-color: $violet;
-
-  cursor: pointer;
-
-  &-popup {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100px;
-    height: 450px;
-    background: $violet;
-    border-radius: 60px;
-
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 25px;
-    flex-direction: column;
-  }
-}

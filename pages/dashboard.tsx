@@ -7,16 +7,11 @@ import { LineChart } from '../src/components/LineChart/component';
 import { Navigation } from '../src/components/Navigation/component';
 import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { auth, db } from '../src/firebase-config';
-import burgerIcon from '../src/assets/burger.svg';
-import crossIcon from '../src/assets/cross.svg';
-import profileIcon from '../src/assets/account.svg';
-import settingsIcon from '../src/assets/systems.svg';
-import logoutIcon from '../src/assets/exit.svg';
-import Image from 'next/image';
-import Link from 'next/link'
 import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
+import { Burger } from '../src/components/Burger/component';
 import classes from '../src/scss/dashboard.module.scss';
+
 interface IChartData {
   labels: string[];
   datasets: {
@@ -88,53 +83,11 @@ const Dashboard: NextPage = () => {
     router.push('/');
   };
 
-
-  const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(true);
-
-  const toggleBurger = () => {
-    setIsBurgerOpen(prevState => !prevState);
-  }
-
   return (
     user ? (
      <div className={classes.dashboard}>
        <div className={classes.mountains} />
-
-       <Flex className={classes.menu} justifyContent={'center'} alignItems={'center'}>
-         { !isBurgerOpen ?
-           <Button onClick={toggleBurger} variant={'unstyled'}>
-             <Image src={burgerIcon}  alt={'burger'} />
-           </Button>
-           :
-           <>
-             <div className={classes['menu-popup']}>
-               <Button w={'60px'} h={'60px'} variant={'unstyled'} onClick={toggleBurger}>
-                 <Link href={'#'}>
-                   <Image src={crossIcon} alt={'close'} />
-                 </Link>
-               </Button>
-
-               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                 <Link href={'#'}>
-                   <Image src={profileIcon} alt={'close'} />
-                 </Link>
-               </Button>
-
-               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                 <Link href={'#'}>
-                   <Image src={settingsIcon} alt={'close'} />
-                 </Link>
-               </Button>
-
-               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                 <Link href={'#'}>
-                   <Image src={logoutIcon} alt={'close'} />
-                 </Link>
-               </Button>
-             </div>
-           </>
-         }
-       </Flex>
+       <Burger />
      </div>
     ) : <NotAuthorized />
   )
