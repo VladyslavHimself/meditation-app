@@ -11,7 +11,7 @@ import { Button, Flex } from '@chakra-ui/react';
 
 export const Burger = ():JSX.Element => {
 
-  const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(true);
+  const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
 
   const toggleBurger = () => {
     setIsBurgerOpen(prevState => !prevState);

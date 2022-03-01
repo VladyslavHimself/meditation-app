@@ -87,7 +87,12 @@ const Dashboard: NextPage = () => {
     user ? (
      <div className={classes.dashboard}>
        <div className={classes.mountains} />
-       <Burger />
+       <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'}>
+         <Box ml={'25px'}>
+           <Burger />
+         </Box>
+       </Flex>
+
      </div>
     ) : <NotAuthorized />
   )
