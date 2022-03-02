@@ -98,17 +98,21 @@ const Dashboard: NextPage = () => {
           <Box className='navbar' mt={'25px'} w={'95%'}>
             <Burger />
           </Box>
+        </Flex>
 
-          <Box>
+        <Flex justifyContent={'center'}>
+          <Flex flexDirection={'column'}>
             <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
             <Flex className="activities">
               <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
               <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
               <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
             </Flex>
-            <Box ml={'50px'} mt={'5px'}><GenButton>Explore courses</GenButton></Box>
+            <Box ml={'50px'} mt={'5px'}>
+              <GenButton>Explore courses</GenButton>
+            </Box>
+          </Flex>
 
-          </Box>
         </Flex>
       </BackgroundLayout>
     ) : <NotAuthorized />
