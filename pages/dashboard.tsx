@@ -17,6 +17,7 @@ import medGirlImage from '../src/assets/meditation-girl.svg';
 import workGuyImage from '../src/assets/work-guy.svg';
 import chillGuyImage from '../src/assets/chill-guy.svg';
 import { GenButton } from '../src/Ui/GenButton/component';
+import { BackgroundLayout } from '../src/Layouts/BackgroundLayout/component';
 
 
 interface IChartData {
@@ -92,26 +93,24 @@ const Dashboard: NextPage = () => {
 
   return (
     user ? (
-     <div className={classes.dashboard}>
-       <div className={classes.mountains} />
-       <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
-         <Box className='navbar' mt={'25px'} w={'95%'}>
-           <Burger />
-         </Box>
+      <BackgroundLayout>
+        <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
+          <Box className='navbar' mt={'25px'} w={'95%'}>
+            <Burger />
+          </Box>
 
-         <Box>
-          <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
-           <Flex className="activities">
-             <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
-             <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
-             <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
-           </Flex>
-           <Box ml={'50px'} mt={'5px'}><GenButton>Explore courses</GenButton></Box>
+          <Box>
+            <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
+            <Flex className="activities">
+              <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
+              <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
+              <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
+            </Flex>
+            <Box ml={'50px'} mt={'5px'}><GenButton>Explore courses</GenButton></Box>
 
-         </Box>
-       </Flex>
-
-     </div>
+          </Box>
+        </Flex>
+      </BackgroundLayout>
     ) : <NotAuthorized />
   )
 };

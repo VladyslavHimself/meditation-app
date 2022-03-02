@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d46151-117d-4853-92d2-060120978ec1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/timerSettings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Layouts/BackgroundLayout/component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Layouts/BackgroundLayout/styles.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/timerSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/timerSettings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/dashboard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/dashboard.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +16,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="25kpauNdDaZBr50bXfQJWtKBIWG" />
   <component name="ProjectLevelVcsManager">
@@ -43,7 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646081011284</updated>
       <workItem from="1646081014204" duration="267000" />
-      <workItem from="1646194099812" duration="500000" />
+      <workItem from="1646194099812" duration="1101000" />
     </task>
     <servers />
   </component>
