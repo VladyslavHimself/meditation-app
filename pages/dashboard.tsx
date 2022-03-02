@@ -16,6 +16,7 @@ import { ActivityBox } from '../src/components/ActivityBox/component';
 import medGirlImage from '../src/assets/meditation-girl.svg';
 import workGuyImage from '../src/assets/work-guy.svg';
 import chillGuyImage from '../src/assets/chill-guy.svg';
+import { GenButton } from '../src/Ui/GenButton/component';
 
 
 interface IChartData {
@@ -105,9 +106,8 @@ const Dashboard: NextPage = () => {
              <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
              <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
            </Flex>
-           <Button>Explore courses</Button>
+           <GenButton>Explore courses</GenButton>
          </Box>
-
        </Flex>
 
      </div>
@@ -116,7 +116,6 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
-
 
 
 // ------------ OLD UI ------------- //
