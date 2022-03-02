@@ -1,6 +1,7 @@
 import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
@@ -104,9 +105,17 @@ const Dashboard: NextPage = () => {
           <Flex flexDirection={'column'}>
             <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
             <Flex className="activities">
-              <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
-              <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
-              <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
+              <Link href={'/timerSettings'}>
+                <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
+              </Link>
+
+              <Link href={'/'}>
+                <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
+              </Link>
+
+              <Link href={'/'}>
+                <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
+              </Link>
             </Flex>
             <Box ml={'50px'} mt={'5px'}>
               <GenButton>Explore courses</GenButton>
