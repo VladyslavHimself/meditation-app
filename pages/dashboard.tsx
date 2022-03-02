@@ -106,7 +106,8 @@ const Dashboard: NextPage = () => {
              <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
              <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
            </Flex>
-           <GenButton>Explore courses</GenButton>
+           <Box ml={'50px'} mt={'5px'}><GenButton>Explore courses</GenButton></Box>
+
          </Box>
        </Flex>
 

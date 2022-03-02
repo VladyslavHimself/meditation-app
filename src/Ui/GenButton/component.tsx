@@ -12,6 +12,8 @@ export const GenButton = ({ children }: IProps ): JSX.Element => (
     borderRadius='30px'
     backgroundColor={'#231773'}
     color={'#f4f4f4'}
+    h={'50px'}
+    p={'0px 44px'}
   >
     { children }
   </Button>
