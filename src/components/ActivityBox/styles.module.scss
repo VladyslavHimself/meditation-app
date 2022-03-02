@@ -1,0 +1,36 @@
+@import '../../scss/variables';
+
+.activity {
+  position: relative;
+  width: 270px;
+  height: 270px;
+
+  background: #8B90EC;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 27px;
+
+  transition: .5s ease;
+
+  &__text {
+    position: absolute;
+    top: 13%;
+    left: 15%;
+    font-weight: 600;
+  }
+
+  &__image {mix-blend-mode: multiply;}
+
+  &::selection {
+    outline: none;
+  }
+
+  &:hover {
+    background: $complimentary;
+    cursor: pointer;
+  }
+
+  &:active {
+    background: $complimentary-active;
+  }
+
+}

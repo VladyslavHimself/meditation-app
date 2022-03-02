@@ -2,6 +2,7 @@ import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
 import { LineChart } from '../src/components/LineChart/component';
 import { Navigation } from '../src/components/Navigation/component';
@@ -11,6 +12,11 @@ import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
 import { Burger } from '../src/components/Burger/component';
 import classes from '../src/scss/dashboard.module.scss';
+import { ActivityBox } from '../src/components/ActivityBox/component';
+import medGirlImage from '../src/assets/meditation-girl.svg';
+import workGuyImage from '../src/assets/work-guy.svg';
+import chillGuyImage from '../src/assets/chill-guy.svg';
+
 
 interface IChartData {
   labels: string[];
@@ -87,10 +93,21 @@ const Dashboard: NextPage = () => {
     user ? (
      <div className={classes.dashboard}>
        <div className={classes.mountains} />
-       <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'}>
-         <Box ml={'25px'}>
+       <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
+         <Box className='navbar' mt={'25px'} w={'95%'}>
            <Burger />
          </Box>
+
+         <Box>
+          <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
+           <Flex className="activities">
+             <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
+             <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
+             <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
+           </Flex>
+           <Button>Explore courses</Button>
+         </Box>
+
        </Flex>
 
      </div>
