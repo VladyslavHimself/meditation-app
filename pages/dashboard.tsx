@@ -1,6 +1,7 @@
 import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
@@ -17,6 +18,7 @@ import medGirlImage from '../src/assets/meditation-girl.svg';
 import workGuyImage from '../src/assets/work-guy.svg';
 import chillGuyImage from '../src/assets/chill-guy.svg';
 import { GenButton } from '../src/Ui/GenButton/component';
+import { BackgroundLayout } from '../src/Layouts/BackgroundLayout/component';
 
 
 interface IChartData {
@@ -92,26 +94,36 @@ const Dashboard: NextPage = () => {
 
   return (
     user ? (
-     <div className={classes.dashboard}>
-       <div className={classes.mountains} />
-       <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
-         <Box className='navbar' mt={'25px'} w={'95%'}>
-           <Burger />
-         </Box>
+      <BackgroundLayout>
+        <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
+          <Box className='navbar' mt={'25px'} w={'95%'}>
+            <Burger />
+          </Box>
+        </Flex>
 
-         <Box>
-          <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
-           <Flex className="activities">
-             <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
-             <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
-             <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
-           </Flex>
-           <Box ml={'50px'} mt={'5px'}><GenButton>Explore courses</GenButton></Box>
+        <Flex justifyContent={'center'}>
+          <Flex flexDirection={'column'}>
+            <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
+            <Flex className="activities">
+              <Link href={'/timerSettings'}>
+                <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
+              </Link>
 
-         </Box>
-       </Flex>
+              <Link href={'/'}>
+                <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
+              </Link>
 
-     </div>
+              <Link href={'/'}>
+                <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
+              </Link>
+            </Flex>
+            <Box ml={'50px'} mt={'5px'}>
+              <GenButton type={'main'}>Explore courses</GenButton>
+            </Box>
+          </Flex>
+
+        </Flex>
+      </BackgroundLayout>
     ) : <NotAuthorized />
   )
 };
