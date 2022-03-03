@@ -7,16 +7,13 @@ import {Text, Flex, Box, Input } from '@chakra-ui/react';
 
 import { Burger } from '../src/components/Burger/component';
 import { GenButton } from '../src/Ui/GenButton/component';
+import { Navbar } from '../src/components/Navbar/component';
 
 const TimerSettings: NextPage = () => {
 
   return (
     <BackgroundLayout>
-      <Flex className="navigation" w={'100vw'} h={'150px'} alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
-        <Box className='navbar' mt={'25px'} w={'95%'}>
-          <Burger />
-        </Box>
-      </Flex>
+      <Navbar />
       <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
         <Text fontSize={'5xl'} color={'white'}>How much time you want to spent?</Text>
         <div className="timer-settings">
@@ -24,7 +21,6 @@ const TimerSettings: NextPage = () => {
             <Input w={'100px'} fontSize={'4xl'} border={'none'} borderBottom={'1px solid black'} />
             <Text fontSize={'4xl'} lineHeight={'1'}>minutes</Text>
           </Flex>
-
           <Box marginTop={'30px'} display={'flex'} justifyContent={'center'}>
             <GenButton type={'light'}>Start</GenButton>
           </Box>
