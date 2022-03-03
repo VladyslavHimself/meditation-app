@@ -118,7 +118,7 @@ const Dashboard: NextPage = () => {
               </Link>
             </Flex>
             <Box ml={'50px'} mt={'5px'}>
-              <GenButton>Explore courses</GenButton>
+              <GenButton type={'main'}>Explore courses</GenButton>
             </Box>
           </Flex>
 
