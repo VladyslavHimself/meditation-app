@@ -11,6 +11,7 @@ import { Timer } from '../src/services/Timer/timer.service';
 import { doc, setDoc } from '@firebase/firestore';
 import { db } from '../src/firebase-config';
 import { v4 as uuidv4 } from 'uuid';
+import resumeIcon from '../src/assets/play.svg';
 
 const Meditate: NextPage = () => {
 
@@ -41,14 +42,14 @@ const Meditate: NextPage = () => {
   
   const saveAndAlertUserComposition = () => {
     alertUserAboutFinish();
-    saveDataToFirestore();
+    saveDataToFirestore(initialTime);
   }
 
-  const saveDataToFirestore = () => {
+  const saveDataToFirestore = (inputMinutes: number = 0) => {
     const callback = async () => {
       await setDoc(doc(db, localStorage.getItem('email')!, 'Total_data', 'meditations', uuidv4()), {
         createdAt: new Date(),
-        minutes: initialTime,
+        minutes: inputMinutes,
       });
     };
 
@@ -59,6 +60,17 @@ const Meditate: NextPage = () => {
     alert('Your activity has finished');
   }
 
+
+  const onForceSaveClickHandler = () => {
+    saveDataToFirestore(minutes)
+    switchTimer(false);
+    setMinutes(0);
+    setSeconds(0);
+  }
+
+  const onPauseTimerHandler = () => {
+    switchTimer((prevState) => !prevState);
+  }
 
   return (
     <BackgroundLayout>
@@ -76,10 +88,10 @@ const Meditate: NextPage = () => {
         </div>
 
         <div className={classes['timer-controllers']}>
-          <GenButton type='light' isRound>
-            <Image src={pauseIcon} alt='pause' />
+          <GenButton type='light' onClickHandler={onPauseTimerHandler} isRound>
+            { isTimerRunning ? <Image src={pauseIcon} alt='pause' /> : <Image src={resumeIcon} alt='resume' />}
           </GenButton>
-          <GenButton type='accent'>Force Save</GenButton>
+          <GenButton type='accent' onClickHandler={onForceSaveClickHandler}>Force Save</GenButton>
         </div>
       </Flex>
     </BackgroundLayout>
