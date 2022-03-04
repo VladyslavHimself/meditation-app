@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/Image';
 import BackgroundLayout from '../src/Layouts/BackgroundLayout';
@@ -20,6 +20,9 @@ const Meditate: NextPage = () => {
   const [seconds, setSeconds] = useState<number>(0);
   const [isTimerRunning, switchTimer] = useState<boolean>(true);
 
+  const progressBarRef = useRef(null);
+  const [progressValue, setProgressValue] = useState<number>(100);
+  const [progressEndValue, setProgressEndValue] = useState<number>(0);
 
   const time = new Timer();
 
@@ -30,16 +33,15 @@ const Meditate: NextPage = () => {
     data && setMinutes(+data);
   }, []);
 
-
   useEffect(() => {
     if (isTimerRunning) {
       minutes <= 0 && seconds <= 0 ? saveAndAlertUserComposition()
       : time.tick(seconds, minutes, setSeconds, setMinutes);
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minutes, seconds, isTimerRunning]);
 
-  
   const saveAndAlertUserComposition = () => {
     alertUserAboutFinish();
     saveDataToFirestore(initialTime);
@@ -60,7 +62,6 @@ const Meditate: NextPage = () => {
     alert('Your activity has finished');
   }
 
-
   const onForceSaveClickHandler = () => {
     saveDataToFirestore(minutes)
     switchTimer(false);
@@ -72,13 +73,25 @@ const Meditate: NextPage = () => {
     switchTimer((prevState) => !prevState);
   }
 
+
+
+  useEffect(() => {
+    console.log(progressBarRef.current);
+    progressBarRef.current.style.background = `conic-gradient(
+       #4B50BF ${progressValue * 3.6}deg,
+       transparent ${progressEndValue * 3.6}deg
+    )`;
+    // setProgressEndValue(prevState => prevState += 100/minutes*60);
+  }, [seconds])
+
+
   return (
     <BackgroundLayout>
       <Navbar />
       <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
         <Text fontSize={'5xl'} color={'white'}>Keep calm & focus in your breate...</Text>
         <div className={classes.timer}>
-          <div className={classes['circular-progress']}>
+          <div className={classes['circular-progress']} ref={progressBarRef}>
             <div className={classes['value-container']}>
               { minutes.toString().length > 1 ? minutes : `0${minutes}` }
                :
