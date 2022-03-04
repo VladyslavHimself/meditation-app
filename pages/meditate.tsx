@@ -20,7 +20,7 @@ const Meditate: NextPage = () => {
   const [seconds, setSeconds] = useState<number>(0);
   const [isTimerRunning, switchTimer] = useState<boolean>(true);
 
-  const progressBarRef = useRef(null);
+  const progressBarRef = useRef<any>(null);
   const [progressValue, setProgressValue] = useState<number>(70);
   const [progressEndValue, setProgressEndValue] = useState<number>(0);
 
