@@ -8,17 +8,31 @@ import { GenButton } from '../src/Ui/GenButton/component';
 import classes from '../src/scss/meditate.module.scss';
 import pauseIcon from '../src/assets/pause.svg';
 import { QuickMeditate } from '../src/components/QuickMeditate/component';
+import { Timer } from '../src/services/Timer/timer.service';
 
 const Meditate: NextPage = () => {
 
   const [minutes, setMinutes] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(0)
+  const [seconds, setSeconds] = useState<number>(0);
+  const [isTimerRunning, switchTimer] = useState<boolean>(true);
+
+
+  const time = new Timer();
 
   useEffect(() => {
     const currentUrl = window.location.search;
     const data: string = currentUrl && new URLSearchParams(currentUrl).get('time')!;
     data && setMinutes(+data);
   }, []);
+
+
+  useEffect(() => {
+    if (isTimerRunning) {
+      minutes <= 0 && seconds <= 0 ? console.log('stop med')
+      : time.tick(seconds, minutes, setSeconds, setMinutes);
+    }
+
+  }, [minutes, seconds, isTimerRunning]);
 
   return (
     <BackgroundLayout>
@@ -30,7 +44,7 @@ const Meditate: NextPage = () => {
             <div className={classes['value-container']}>
               { minutes.toString().length > 1 ? minutes : `0${minutes}` }
                :
-               { seconds.toString().length > 1 ? seconds : `0${seconds}` }
+              { seconds.toString().length > 1 ? seconds : `0${seconds}` }
             </div>
           </div>
         </div>
