@@ -1,24 +1,21 @@
-import { Box, Button, Container, Flex, Text} from '@chakra-ui/react';
+import { Box, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
-import { LineChart } from '../src/components/LineChart/component';
-import { Navigation } from '../src/components/Navigation/component';
-import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { auth, db } from '../src/firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
 import { Burger } from '../src/components/Burger/component';
-import classes from '../src/scss/dashboard.module.scss';
 import { ActivityBox } from '../src/components/ActivityBox/component';
 import medGirlImage from '../src/assets/meditation-girl.svg';
 import workGuyImage from '../src/assets/work-guy.svg';
 import chillGuyImage from '../src/assets/chill-guy.svg';
 import { GenButton } from '../src/Ui/GenButton/component';
 import { BackgroundLayout } from '../src/Layouts/BackgroundLayout/component';
+import { Navigation } from '../src/components/Navigation/component';
+import { Navbar } from '../src/components/Navbar/component';
 
 
 interface IChartData {
@@ -95,12 +92,7 @@ const Dashboard: NextPage = () => {
   return (
     user ? (
       <BackgroundLayout>
-        <Flex className="navigation" w={'100vw'} h={'150px'}  alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'}>
-          <Box className='navbar' mt={'25px'} w={'95%'}>
-            <Burger />
-          </Box>
-        </Flex>
-
+        <Navbar />
         <Flex justifyContent={'center'}>
           <Flex flexDirection={'column'}>
             <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>

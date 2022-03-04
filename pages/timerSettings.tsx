@@ -1,11 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
 import BackgroundLayout from '../src/Layouts/BackgroundLayout';
-import classes from './styles.module.scss';
-
 import {Text, Flex, Box, Input } from '@chakra-ui/react';
-
-import { Burger } from '../src/components/Burger/component';
 import { GenButton } from '../src/Ui/GenButton/component';
 import { Navbar } from '../src/components/Navbar/component';
 
