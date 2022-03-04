@@ -21,7 +21,7 @@ const Meditate: NextPage = () => {
   const [isTimerRunning, switchTimer] = useState<boolean>(true);
 
   const progressBarRef = useRef(null);
-  const [progressValue, setProgressValue] = useState<number>(100);
+  const [progressValue, setProgressValue] = useState<number>(70);
   const [progressEndValue, setProgressEndValue] = useState<number>(0);
 
   const time = new Timer();
@@ -81,7 +81,7 @@ const Meditate: NextPage = () => {
        #4B50BF ${progressValue * 3.6}deg,
        transparent ${progressEndValue * 3.6}deg
     )`;
-    // setProgressEndValue(prevState => prevState += 100/minutes*60);
+    
   }, [seconds])
 
 
