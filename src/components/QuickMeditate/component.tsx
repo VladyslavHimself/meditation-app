@@ -10,7 +10,7 @@ export const QuickMeditate = (): JSX.Element => {
 
   const [minutes, setMinutes] = useState<number>(5);
   const [seconds, setSeconds] = useState<number>(0);
-  const [isTimerStarted, setIsTimerStarted] = useState<boolean>(false)
+  const [isTimerStarted, setIsTimerStarted] = useState<boolean>(true)
 
   const timer = new Timer();
 
@@ -55,13 +55,10 @@ export const QuickMeditate = (): JSX.Element => {
   }, [minutes, seconds, isTimerStarted])
 
   return (
-    <Flex w='inherit' h='inherit'  boxShadow={'lg'} justifyContent='space-evenly' alignItems='center' flexDirection='column'>
-      <Button borderRadius='100px' w='150px' h='150px' onClick={onResumeTimerHandler}>Quick Meditate!</Button>
-      <Text color='white' fontSize='2xl'>
-        {convertTimeToTTformat(minutes)} 
-        : 
-        {convertTimeToTTformat(seconds)}
-        </Text>
-    </Flex>
+    <Text color='white' fontSize='2xl'>
+      {convertTimeToTTformat(minutes)} 
+      : 
+      {convertTimeToTTformat(seconds)}
+    </Text>
   )
 };

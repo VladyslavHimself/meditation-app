@@ -8,6 +8,9 @@ import logoutIcon from '../../assets/exit.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button, Flex } from '@chakra-ui/react';
+import { signOut } from '@firebase/auth';
+import router from 'next/router';
+import { auth } from '../../firebase-config';
 
 export const Burger = ():JSX.Element => {
 
@@ -16,6 +19,12 @@ export const Burger = ():JSX.Element => {
   const toggleBurger = () => {
     setIsBurgerOpen(prevState => !prevState);
   }
+
+  const onLogoutHandler = (): void => {
+    signOut(auth);
+    router.push('/');
+  };
+
   return (
     <Flex className={classes.burger} justifyContent={'center'} alignItems={'center'}>
       {
@@ -33,18 +42,18 @@ export const Burger = ():JSX.Element => {
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                <Link href={'#'}>
+                <Link href={'/profile'}>
                   <Image src={profileIcon} alt={'close'} />
                 </Link>
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                <Link href={'#'}>
+                <Link href={'/settings'}>
                   <Image src={settingsIcon} alt={'close'} />
                 </Link>
               </Button>
 
-              <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
+              <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'} onClick={onLogoutHandler}>
                 <Link href={'#'}>
                   <Image src={logoutIcon} alt={'close'} />
                 </Link>
