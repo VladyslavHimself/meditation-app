@@ -99,11 +99,11 @@ const Dashboard: NextPage = () => {
               </Link>
 
               <Link href={'/'}>
-                <Box p={'10px'}><ActivityBox title='Focus on your work' image={workGuyImage}/></Box>
+                <Box p={'10px'}><ActivityBox isDisabled title='Focus on your work' image={workGuyImage}/></Box>
               </Link>
 
               <Link href={'/'}>
-                <Box p={'10px'}><ActivityBox title='Focus on your hobby' image={chillGuyImage}/></Box>
+                <Box p={'10px'}><ActivityBox isDisabled title='Focus on your hobby' image={chillGuyImage}/></Box>
               </Link>
             </Flex>
             <Box ml={'50px'} mt={'5px'}>

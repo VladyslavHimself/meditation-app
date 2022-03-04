@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classes from './styles.module.scss';
 import burgerIcon from '../../assets/burger.svg';
 import crossIcon from '../../assets/cross.svg';
-import profileIcon from '../../assets/account.svg';
+import dashboardIcon from '../../assets/dashboard.svg';
 import settingsIcon from '../../assets/systems.svg';
 import logoutIcon from '../../assets/exit.svg';
 import Image from 'next/image';
@@ -42,20 +42,20 @@ export const Burger = ():JSX.Element => {
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                <Link href={'/profile'}>
-                  <Image src={profileIcon} alt={'close'} />
+                <Link href={'/dashboard'}>
+                  <Image src={dashboardIcon} alt={'dashboard'} />
                 </Link>
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
                 <Link href={'/settings'}>
-                  <Image src={settingsIcon} alt={'close'} />
+                  <Image src={settingsIcon} alt={'settings'} />
                 </Link>
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'} onClick={onLogoutHandler}>
                 <Link href={'#'}>
-                  <Image src={logoutIcon} alt={'close'} />
+                  <Image src={logoutIcon} alt={'logout'} />
                 </Link>
               </Button>
             </div>
