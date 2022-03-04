@@ -84,10 +84,7 @@ const Dashboard: NextPage = () => {
     currentUser && setUser(currentUser);
   });
 
-  const onLogoutHandler = (): void => {
-    signOut(auth);
-    router.push('/');
-  };
+  
 
   return (
     user ? (
@@ -121,31 +118,3 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
-
-
-// ------------ OLD UI ------------- //
-//
-// <Navigation>
-//   <Text fontSize='xl' color='white' fontWeight='bold'>Meditation</Text>
-//   <Flex justifyContent='space-around' alignItems='center'>
-//     <Text fontSize='m' color='white' pr='10px' display='flex' alignItems='center'>
-//       <Image src={userIcon} width='35px' height='35px' alt='logout-icon'></Image>
-//       <Text ml={'5px'}>{user?.email}</Text>
-//     </Text>
-//     <Button mr='10px' background={'#3880ff'} color={'#fff'}>
-//       <Image src={settingsIcon} width='20px' height='20px' alt='settings-icon'></Image>
-//       <Text ml={'5px'}>Settings</Text>
-//     </Button>
-//     <Button onClick={onLogoutHandler} variant='solid'>
-//       <Image src={logoutIcon} width='20px' height='20px' alt='logout-icon'></Image>
-//       <Text ml={'5px'}>Logout</Text>
-//     </Button>
-//   </Flex>
-// </Navigation>
-//
-// <Container maxW='container.xl' mt='25px' display='flex' justifyContent='space-evenly' alignItems='center'>
-//   <Box w='250px' h='270px' display='flex' backgroundColor='#3171e0' borderRadius='12px'>
-//     <QuickMeditate />
-//   </Box>
-//   <LineChart title={'Meditation monitoring'} data={meditationData} />
-// </Container>

@@ -5,10 +5,11 @@ import classes from './styles.module.scss';
 interface IProps extends React.HTMLAttributes<HTMLElement>{
   children: React.ReactNode,
   type: 'light' | 'main' | 'accent',
-  isRound?: boolean
+  isRound?: boolean,
+  onClickHandler?: (event: any) => void,
 }
 
-export const GenButton = ({ children, type, isRound }: IProps ): JSX.Element => {
+export const GenButton = ({ children, type, isRound, onClickHandler }: IProps ): JSX.Element => {
 
   if (type === 'light') {
     return (
@@ -19,6 +20,7 @@ export const GenButton = ({ children, type, isRound }: IProps ): JSX.Element => 
         color={'#f4f4f4'}
         h={'50px'}
         p={'0px 44px'}
+        onClick={onClickHandler}
       >
         { children }
       </Button>
@@ -33,6 +35,7 @@ export const GenButton = ({ children, type, isRound }: IProps ): JSX.Element => 
         color={'#f4f4f4'}
         h={'50px'}
         p={'0px 44px'}
+        onClick={onClickHandler}
       >
         { children }
       </Button>
@@ -46,6 +49,7 @@ export const GenButton = ({ children, type, isRound }: IProps ): JSX.Element => 
         color={'#f4f4f4'}
         h={'50px'}
         p={'0px 20px'}
+        onClick={onClickHandler}
       >
         { children }
       </Button>
