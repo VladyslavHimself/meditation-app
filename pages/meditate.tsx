@@ -7,12 +7,15 @@ import { Flex, Text } from '@chakra-ui/react';
 import { GenButton } from '../src/Ui/GenButton/component';
 import classes from '../src/scss/meditate.module.scss';
 import pauseIcon from '../src/assets/pause.svg';
-import { QuickMeditate } from '../src/components/QuickMeditate/component';
 import { Timer } from '../src/services/Timer/timer.service';
+import { doc, setDoc } from '@firebase/firestore';
+import { db } from '../src/firebase-config';
+import { v4 as uuidv4 } from 'uuid';
 
 const Meditate: NextPage = () => {
 
-  const [minutes, setMinutes] = useState<number>(0);
+  const [initialTime, setInitialTime] = useState<number>();
+  const [minutes, setMinutes] = useState<number>(1);
   const [seconds, setSeconds] = useState<number>(0);
   const [isTimerRunning, switchTimer] = useState<boolean>(true);
 
@@ -22,17 +25,40 @@ const Meditate: NextPage = () => {
   useEffect(() => {
     const currentUrl = window.location.search;
     const data: string = currentUrl && new URLSearchParams(currentUrl).get('time')!;
+    data && setInitialTime(+data);
     data && setMinutes(+data);
   }, []);
 
 
   useEffect(() => {
     if (isTimerRunning) {
-      minutes <= 0 && seconds <= 0 ? console.log('stop med')
+      minutes <= 0 && seconds <= 0 ? saveAndAlertUserComposition()
       : time.tick(seconds, minutes, setSeconds, setMinutes);
     }
 
   }, [minutes, seconds, isTimerRunning]);
+
+  
+  const saveAndAlertUserComposition = () => {
+    alertUserAboutFinish();
+    saveDataToFirestore();
+  }
+
+  const saveDataToFirestore = () => {
+    const callback = async () => {
+      await setDoc(doc(db, localStorage.getItem('email')!, 'Total_data', 'meditations', uuidv4()), {
+        createdAt: new Date(),
+        minutes: initialTime,
+      });
+    };
+
+    callback();
+  }
+
+  const alertUserAboutFinish = () => {
+    alert('Your activity has finished');
+  }
+
 
   return (
     <BackgroundLayout>
