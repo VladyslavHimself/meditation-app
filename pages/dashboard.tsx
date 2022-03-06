@@ -7,16 +7,14 @@ import React, { useEffect, useState } from 'react';
 import { auth, db } from '../src/firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
-import { Burger } from '../src/components/Burger/component';
 import { ActivityBox } from '../src/components/ActivityBox/component';
 import medGirlImage from '../src/assets/meditation-girl.svg';
 import workGuyImage from '../src/assets/work-guy.svg';
 import chillGuyImage from '../src/assets/chill-guy.svg';
 import { GenButton } from '../src/Ui/GenButton/component';
 import { BackgroundLayout } from '../src/Layouts/BackgroundLayout/component';
-import { Navigation } from '../src/components/Navigation/component';
 import { Navbar } from '../src/components/Navbar/component';
-
+import { motion } from 'framer-motion';
 
 interface IChartData {
   labels: string[];
@@ -30,7 +28,18 @@ interface IChartData {
 
 const Dashboard: NextPage = () => {
 
-  const router = useRouter(); 
+  const pMotion = {
+    'hidden': {
+      x: -50,
+      opacity: 0
+    },
+
+    'visible': {
+      x: 0,
+      opacity: 1,
+    }
+  }
+
   const [user, setUser] = useState<User>();
   const [meditationData, setMeditationData] = useState<IChartData>({
     labels: ['empty'],
@@ -43,8 +52,8 @@ const Dashboard: NextPage = () => {
   });
 
   useEffect(() => {
+    // #TODO: Export to a separate service
     const getMeditations = async () => {
-
       const userEmail: string = localStorage.getItem('email')!;
       
       const meditationListCollectionRef = collection(db, userEmail, 'Total_data', 'meditations');
@@ -80,6 +89,7 @@ const Dashboard: NextPage = () => {
     getMeditations();
   }, []);
 
+  // TODO: Do separate hook
   onAuthStateChanged(auth, (currentUser): void => {
     currentUser && setUser(currentUser);
   });
@@ -92,7 +102,17 @@ const Dashboard: NextPage = () => {
         <Navbar />
         <Flex justifyContent={'center'}>
           <Flex flexDirection={'column'}>
-            <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>
+            <motion.div
+              initial={pMotion.hidden}
+              animate={pMotion.visible}
+              transition={{
+                delay: .5,
+                duration: 1.7,
+                type: 'spring'
+              }}
+            >
+              <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>  
+            </motion.div>
             <Flex className="activities">
               <Link href={'/timerSettings'}>
                 <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
