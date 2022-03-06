@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d46151-117d-4853-92d2-060120978ec1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Navbar/component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scss/meditate.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/meditate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/meditate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/timerSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/timerSettings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +62,8 @@
       <workItem from="1646280579574" duration="42000" />
       <workItem from="1646280703579" duration="458000" />
       <workItem from="1646282356094" duration="177000" />
+      <workItem from="1646525095612" duration="1131000" />
+      <workItem from="1646535588746" duration="86000" />
     </task>
     <servers />
   </component>
