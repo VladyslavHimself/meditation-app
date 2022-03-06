@@ -11,6 +11,7 @@ import { Button, Flex } from '@chakra-ui/react';
 import { signOut } from '@firebase/auth';
 import router from 'next/router';
 import { auth } from '../../firebase-config';
+import { motion } from 'framer-motion';
 
 export const Burger = ():JSX.Element => {
 
@@ -26,7 +27,12 @@ export const Burger = ():JSX.Element => {
   };
 
   return (
-    <Flex className={classes.burger} justifyContent={'center'} alignItems={'center'}>
+    <motion.div className={classes.burger}
+      whileHover={{
+        scale: 1.1
+      }}
+    >
+      
       {
         !isBurgerOpen ?
           <Button onClick={toggleBurger} variant={'unstyled'}>
@@ -34,7 +40,15 @@ export const Burger = ():JSX.Element => {
           </Button>
           :
           <>
-            <div className={classes['burger-popup']}>
+            <motion.div className={classes['burger-popup']}
+              animate={{
+                height: '450px'
+              }}
+
+              whileTap={{
+                height: '100px',
+              }}
+            >
               <Button w={'60px'} h={'60px'} variant={'unstyled'} onClick={toggleBurger}>
                 <Link href={'#'}>
                   <Image src={crossIcon} alt={'close'} />
@@ -58,9 +72,9 @@ export const Burger = ():JSX.Element => {
                   <Image src={logoutIcon} alt={'logout'} />
                 </Link>
               </Button>
-            </div>
+            </motion.div>
           </>
       }
-    </Flex>
+    </motion.div>
   )
 }

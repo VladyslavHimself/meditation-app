@@ -2,7 +2,6 @@ import { Box, Flex, Text} from '@chakra-ui/react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../src/firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
