@@ -89,7 +89,7 @@ const Meditate: NextPage = () => {
     <BackgroundLayout>
       <Navbar />
       <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-        <Text fontSize={'5xl'} color={'white'}>Keep calm & focus in your breate...</Text>
+        <Text className={classes['header-text']}fontSize={'5xl'} color={'white'}>Keep calm & focus in your breate...</Text>
         <div className={classes.timer}>
           <div className={classes['circular-progress']} ref={progressBarRef}>
             <div className={classes['value-container']}>
