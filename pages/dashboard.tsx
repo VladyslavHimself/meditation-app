@@ -47,6 +47,20 @@ const Dashboard: NextPage = () => {
     }
   }
 
+  const activitiesMotion = {
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * .2,
+        duration: 1,
+        type: 'spring'
+      }
+    }),
+
+    hidden: { opacity: 0, x: 100}
+  };
+
   const [user, setUser] = useState<User>();
   const [meditationData, setMeditationData] = useState<IChartData>({
     labels: ['empty'],
@@ -148,12 +162,21 @@ const Dashboard: NextPage = () => {
             <Flex className="activities">
 
               {
-                activities.map((({ id, title, href, image, isDisabled }: IActivity) => (
-                    <Link key={id} href={href} passHref={true}>
-                      <Box p={'10px'}>
+                activities.map((({ id, title, href, image, isDisabled }: IActivity, i) => (
+                  <motion.div
+                   key={id}
+                   variants={activitiesMotion}
+                   initial='hidden'
+                   animate='visible'
+                   custom={i}
+                  >
+                    <Link  href={href} passHref={true}>
+                      <Box p={'10px'}>    
                         <ActivityBox title={title} image={image} isDisabled={isDisabled} />
                         </Box>
                     </Link>
+                  </motion.div>
+                    
                   )
                 ))
               }
