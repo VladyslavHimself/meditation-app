@@ -25,6 +25,14 @@ interface IChartData {
   }[];
 }
 
+interface IActivity { 
+  id: number,
+  title: string,
+  image: any,
+  href: string,
+  isDisabled: boolean,
+}
+
 const Dashboard: NextPage = () => {
 
   const pMotion = {
@@ -93,7 +101,32 @@ const Dashboard: NextPage = () => {
     currentUser && setUser(currentUser);
   });
 
-  
+
+  const activities: IActivity[] = [
+    {
+      id: 1,
+      title: 'Focus on your mind',
+      image: medGirlImage,
+      href: '/timerSettings',
+      isDisabled: false,
+    },
+
+    {
+      id: 2,
+      title: 'Focus on your work',
+      image: workGuyImage,
+      href: '#',
+      isDisabled: true,
+    },
+
+    {
+      id: 3,
+      title: 'Focus on your hobby',
+      image: chillGuyImage,
+      href: '#',
+      isDisabled: true,
+    },
+  ]
 
   return (
     user ? (
@@ -113,17 +146,17 @@ const Dashboard: NextPage = () => {
               <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>  
             </motion.div>
             <Flex className="activities">
-              <Link href={'/timerSettings'}>
-                <Box p={'10px'}><ActivityBox title='Focus on your mind' image={medGirlImage}/></Box>
-              </Link>
 
-              <Link href={'/'}>
-                <Box p={'10px'}><ActivityBox isDisabled title='Focus on your work' image={workGuyImage}/></Box>
-              </Link>
-
-              <Link href={'/'}>
-                <Box p={'10px'}><ActivityBox isDisabled title='Focus on your hobby' image={chillGuyImage}/></Box>
-              </Link>
+              {
+                activities.map((({ id, title, href, image, isDisabled }: IActivity) => (
+                    <Link key={id} href={href} passHref={true}>
+                      <Box p={'10px'}>
+                        <ActivityBox title={title} image={image} isDisabled={isDisabled} />
+                        </Box>
+                    </Link>
+                  )
+                ))
+              }
             </Flex>
             <Box ml={'50px'} mt={'5px'}>
               <GenButton type={'main'}>Explore courses</GenButton>
@@ -137,3 +170,21 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
+
+
+  /* <motion.div
+    initial={{
+      y: 200,
+      opacity: 0,
+    }}
+    animate={{
+      y: 0,
+      opacity: 1,
+    }}
+    transition={{
+      duration: .8,
+      type: 'spring'
+    }}
+  > */
+
+  // </motion.div>

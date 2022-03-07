@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "title": "Focus on your mind",
+    "image": "medGirlImage",
+    "href": "/timerSettings",
+    "isDisabled": false
+  },
+
+  {
+    "id": 2,
+    "title": "Focus on your work",
+    "image": "image",
+    "href": "#",
+    "isDisabled": true
+  },
+
+  {
+    "id": 3,
+    "title": "Focus on your hobby",
+    "image": "image",
+    "href": "#",
+    "isDisabled": true
+  }
+]
