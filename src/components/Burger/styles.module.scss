@@ -26,11 +26,11 @@
     background: $violet;
     border-radius: 60px;
 
-
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding-top: 25px;
     flex-direction: column;
+    z-index: 99;
   }
 }

@@ -5,6 +5,7 @@ import {Text, Flex, Box, Input } from '@chakra-ui/react';
 import { GenButton } from '../src/Ui/GenButton/component';
 import { Navbar } from '../src/components/Navbar/component';
 import { useRouter } from 'next/router';
+import classes from '../src/scss/timerSettings.module.scss';
 
 const TimerSettings: NextPage = () => {
 
@@ -31,7 +32,7 @@ const TimerSettings: NextPage = () => {
     <BackgroundLayout>
       <Navbar />
       <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-        <Text fontSize={'5xl'} color={'white'}>How much time you want to spent?</Text>
+        <Text className={classes['header-text']} fontSize={'5xl'} color={'white'}>How much time you want to spent?</Text>
         <div className="timer-settings">
           <Flex className="timer-settings__config" alignItems={'flex-end'} height={'100px'}>
             <Input value={timerValue} onChange={(e: any) => onTimerChangeHandler(e)} w={'100px'} fontSize={'4xl'} border={'none'} borderBottom={'1px solid black'} />
