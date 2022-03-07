@@ -1,5 +1,5 @@
 import { Box, Flex, Text} from '@chakra-ui/react';
-import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -14,6 +14,7 @@ import { GenButton } from '../src/Ui/GenButton/component';
 import { BackgroundLayout } from '../src/Layouts/BackgroundLayout/component';
 import { Navbar } from '../src/components/Navbar/component';
 import { motion } from 'framer-motion';
+import classes from '../src/scss/dashboard.module.scss';
 
 interface IChartData {
   labels: string[];
@@ -157,9 +158,9 @@ const Dashboard: NextPage = () => {
                 type: 'spring'
               }}
             >
-              <Text fontSize={'5xl'} color={'white'}>Welcome back, Vladyslav</Text>  
+              <Text className={classes['header-text']} fontSize={'5xl'}  color={'white'}>Welcome back, Vladyslav</Text>  
             </motion.div>
-            <Flex className="activities">
+            <Flex className={classes.activities}>
 
               {
                 activities.map((({ id, title, href, image, isDisabled }: IActivity, i) => (
@@ -181,7 +182,7 @@ const Dashboard: NextPage = () => {
                 ))
               }
             </Flex>
-            <Box ml={'50px'} mt={'5px'}>
+            <Box className={classes['courses-button']} ml={'50px'} mt={'5px'}>
               <GenButton type={'main'}>Explore courses</GenButton>
             </Box>
           </Flex>
