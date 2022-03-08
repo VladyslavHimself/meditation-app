@@ -1,5 +1,5 @@
 import { Box, Flex, Text} from '@chakra-ui/react';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import { Navbar } from '../src/components/Navbar/component';
 import { motion } from 'framer-motion';
 import classes from '../src/scss/dashboard.module.scss';
 import { Meditations } from '../src/services/Meditations/meditations.service';
+import { useAuthStateChecker } from '../src/hooks/useAuthStateChecker/useAuthStateChecker';
 
 interface IChartData {
   labels: string[];
@@ -81,10 +82,7 @@ const Dashboard: NextPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // TODO: Do separate hook
-  onAuthStateChanged(auth, (currentUser): void => {
-    currentUser && setUser(currentUser);
-  });
+  useAuthStateChecker(auth, setUser);
 
 
   const activities: IActivity[] = [
