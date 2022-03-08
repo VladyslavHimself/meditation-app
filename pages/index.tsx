@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { InputForm } from '../src/components/InputForm/component';
 import { auth } from '../src/firebase-config';
+import { useAuthStateChecker } from '../src/hooks/useAuthStateChecker/useAuthStateChecker';
 import { InputField } from '../src/Ui/InputField/component';
 
 const Home: NextPage = () => {
@@ -35,9 +36,7 @@ const Home: NextPage = () => {
      }
   }
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useAuthStateChecker(auth, setUser);
 
   useEffect(() => {
     if (user?.uid) {
