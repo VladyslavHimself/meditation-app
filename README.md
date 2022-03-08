@@ -1,6 +1,7 @@
 ## Tranquillum App
 
 This is a program that will help you focus on your tasks more efficiently and with tracking your progress. Created as a PET project.
+Also you can run app as PWA application.
 
 ## Stack of technologies
   * React.js (Next.js) / TypeScript - as Core;
