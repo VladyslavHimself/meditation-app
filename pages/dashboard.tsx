@@ -126,7 +126,7 @@ const Dashboard: NextPage = () => {
                 type: 'spring'
               }}
             >
-              <Text className={classes['header-text']} fontSize={'5xl'}  color={'white'}>Welcome back, Vladyslav</Text>  
+              <Text className={classes['header-text']} fontSize={'5xl'}  color={'white'}>Welcome back, User!</Text>  
             </motion.div>
             <Flex className={classes.activities}>
 
