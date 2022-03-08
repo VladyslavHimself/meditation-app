@@ -15,6 +15,7 @@ import { BackgroundLayout } from '../src/Layouts/BackgroundLayout/component';
 import { Navbar } from '../src/components/Navbar/component';
 import { motion } from 'framer-motion';
 import classes from '../src/scss/dashboard.module.scss';
+import { Meditations } from '../src/services/Meditations/meditations.service';
 
 interface IChartData {
   labels: string[];
@@ -62,6 +63,8 @@ const Dashboard: NextPage = () => {
     hidden: { opacity: 0, x: 100}
   };
 
+  const meditations = new Meditations();
+
   const [user, setUser] = useState<User>();
   const [meditationData, setMeditationData] = useState<IChartData>({
     labels: ['empty'],
@@ -73,43 +76,10 @@ const Dashboard: NextPage = () => {
     }]
   });
 
-// #TODO: Export to a separate service
   useEffect(() => {
-    
-    const getMeditations = async () => {
-      const userEmail: string = localStorage.getItem('email')!;
-      
-      const meditationListCollectionRef = collection(db, userEmail, 'Total_data', 'meditations');
-      const unsortedData = await getDocs(meditationListCollectionRef);
-      const userMeditations: { id: string }[] = unsortedData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      
-      const formatDate = () => {
-        const dates: Date[] = userMeditations.map((data: any) => new Date(data.createdAt?.seconds * 1000));
-        
-        const formatDate: string[] = dates.map((date: any) => {
-          const unformatDate = new Date(date);
-          const month = unformatDate.getUTCMonth() + 1;
-          const day = unformatDate.getUTCDate();
-          const year = unformatDate.getUTCFullYear();
-
-          return `${day}/${month}/${year}`;
-        });
-
-        return [...formatDate];
-      };
-
-       setMeditationData({
-        labels: formatDate(),
-        datasets: [{
-          data: [...userMeditations.map((data: any) => data.minutes)],
-          label: 'minutes',
-          borderColor: 'rgb(53, 162, 235)',
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        }]
-      });
-    };
-
-    getMeditations();
+    const userEmail: string = localStorage.getItem('email')!;
+    meditations.getMeditations(userEmail, db, setMeditationData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // TODO: Do separate hook
