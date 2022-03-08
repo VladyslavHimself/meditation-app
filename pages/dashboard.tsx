@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../src/firebase-config';
-import { collection, getDocs } from 'firebase/firestore';
 import { NotAuthorized } from '../src/components/NotAuthorized/component';
 import { ActivityBox } from '../src/components/ActivityBox/component';
 import medGirlImage from '../src/assets/meditation-girl.svg';
