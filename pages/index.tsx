@@ -26,12 +26,12 @@ const Home: NextPage = () => {
     try {
       setIsLoadingLogin(true);
       await signInWithEmailAndPassword(auth, email, password);
-      await setIsLoadingLogin(false);
+      setIsLoadingLogin(false);
       router.push('/dashboard');
      } catch (e: any) {   
-        await setIsLoadingLogin(false);
-        await setIsWrongPassword(true);
-        await setPassword('');
+        setIsLoadingLogin(false);
+        setIsWrongPassword(true);
+        setPassword('');
      }
   }
 
@@ -47,9 +47,7 @@ const Home: NextPage = () => {
   }, [router, user]);
 
   return (
-
     <>
-
       <InputForm title='Meditation'>
           <InputField
           name={'E-mail'}

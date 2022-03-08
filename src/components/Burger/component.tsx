@@ -7,14 +7,13 @@ import settingsIcon from '../../assets/systems.svg';
 import logoutIcon from '../../assets/exit.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, Flex } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { signOut } from '@firebase/auth';
 import router from 'next/router';
 import { auth } from '../../firebase-config';
 import { motion } from 'framer-motion';
 
 export const Burger = ():JSX.Element => {
-
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
 
   const toggleBurger = () => {
@@ -50,25 +49,25 @@ export const Burger = ():JSX.Element => {
               }}
             >
               <Button w={'60px'} h={'60px'} variant={'unstyled'} onClick={toggleBurger}>
-                <Link href={'#'}>
+                <Link href={'#'} passHref={true}>
                   <Image src={crossIcon} alt={'close'} />
                 </Link>
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                <Link href={'/dashboard'}>
+                <Link href={'/dashboard'} passHref={true}>
                   <Image src={dashboardIcon} alt={'dashboard'} />
                 </Link>
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'}>
-                <Link href={'/settings'}>
+                <Link href={'/settings'} passHref={true}>
                   <Image src={settingsIcon} alt={'settings'} />
                 </Link>
               </Button>
 
               <Button mt={'50px'} w={'60px'} h={'60px'} variant={'unstyled'} onClick={onLogoutHandler}>
-                <Link href={'#'}>
+                <Link href={'#'} passHref={true}>
                   <Image src={logoutIcon} alt={'logout'} />
                 </Link>
               </Button>

@@ -14,7 +14,6 @@ import { v4 as uuidv4 } from 'uuid';
 import resumeIcon from '../src/assets/play.svg';
 
 const Meditate: NextPage = () => {
-
   const [initialTime, setInitialTime] = useState<number>();
   const [minutes, setMinutes] = useState<number>(1);
   const [seconds, setSeconds] = useState<number>(0);
@@ -73,10 +72,7 @@ const Meditate: NextPage = () => {
     switchTimer((prevState) => !prevState);
   }
 
-
-
   useEffect(() => {
-    console.log(progressBarRef.current);
     progressBarRef.current.style.background = `conic-gradient(
        #4B50BF ${progressValue * 3.6}deg,
        transparent ${progressEndValue * 3.6}deg
@@ -89,7 +85,9 @@ const Meditate: NextPage = () => {
     <BackgroundLayout>
       <Navbar />
       <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-        <Text className={classes['header-text']}fontSize={'5xl'} color={'white'}>Keep calm & focus in your breate...</Text>
+        <Text className={classes['header-text']}fontSize={'5xl'} color={'white'}>
+          Keep calm & focus in your breate...
+        </Text>
         <div className={classes.timer}>
           <div className={classes['circular-progress']} ref={progressBarRef}>
             <div className={classes['value-container']}>
@@ -104,7 +102,9 @@ const Meditate: NextPage = () => {
           <GenButton type='light' onClickHandler={onPauseTimerHandler} isRound>
             { isTimerRunning ? <Image src={pauseIcon} alt='pause' /> : <Image src={resumeIcon} alt='resume' />}
           </GenButton>
-          <GenButton type='accent' onClickHandler={onForceSaveClickHandler}>Force Save</GenButton>
+          <GenButton type='accent' onClickHandler={onForceSaveClickHandler}>
+            Force Save
+          </GenButton>
         </div>
       </Flex>
     </BackgroundLayout>

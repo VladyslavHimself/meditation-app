@@ -8,12 +8,9 @@ interface IInputField {
   setInputValue: any,
 };
 
-export const InputField = ({ name, type, setInputValue, inputValue }: IInputField ): JSX.Element => {
-
-  return (
-    <Box>
-      <Text>{ name }</Text>
-      <Input type={type} value={inputValue} onChange={ (e) => {setInputValue(e.target.value)}} />
-    </Box>
-  )
-};
+export const InputField = ({ name, type, setInputValue, inputValue }: IInputField ): JSX.Element => (
+  <Box>
+    <Text>{ name }</Text>
+    <Input type={type} value={inputValue} onChange={ (e) => {setInputValue(e.target.value)}} />
+  </Box>
+);

@@ -1,4 +1,4 @@
-import { Flex, Button, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import { doc, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase-config';
@@ -23,19 +23,6 @@ export const QuickMeditate = (): JSX.Element => {
     return time;
   }
 
-  const onResumeTimerHandler = () => {
-    
-    if (isTimerStarted) {
-      setIsTimerStarted(false);
-      setTimeout(() => {
-        setMinutes(5);
-        setSeconds(0);
-      }, 1000);
-    } else {
-      setIsTimerStarted(true);
-    }
-  };
-
   const connectToFirestoreAndSaveMeditation = () => {
     const callback = async () => {
       await setDoc(doc(db, localStorage.getItem('email')!, 'Total_data', 'meditations', uuidv4()), {
@@ -52,6 +39,7 @@ export const QuickMeditate = (): JSX.Element => {
      minutes <= 0 && seconds <= 0 ? connectToFirestoreAndSaveMeditation()
      : timer.tick(seconds, minutes, setSeconds, setMinutes);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minutes, seconds, isTimerStarted])
 
   return (

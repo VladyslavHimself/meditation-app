@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import BackgroundLayout from '../src/Layouts/BackgroundLayout';
 import {Text, Flex, Box, Input } from '@chakra-ui/react';
@@ -8,13 +8,8 @@ import { useRouter } from 'next/router';
 import classes from '../src/scss/timerSettings.module.scss';
 
 const TimerSettings: NextPage = () => {
-
   const [timerValue, setTimerValue] = useState<number>(0);
   const router = useRouter();
-
-  useEffect(() => {
-    console.log(timerValue);
-  }, [timerValue])
 
   const onTimerChangeHandler = (e: any) => {
     setTimerValue(e.target.value);

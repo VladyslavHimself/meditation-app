@@ -73,8 +73,9 @@ const Dashboard: NextPage = () => {
     }]
   });
 
+// #TODO: Export to a separate service
   useEffect(() => {
-    // #TODO: Export to a separate service
+    
     const getMeditations = async () => {
       const userEmail: string = localStorage.getItem('email')!;
       
@@ -194,21 +195,3 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
-
-
-  /* <motion.div
-    initial={{
-      y: 200,
-      opacity: 0,
-    }}
-    animate={{
-      y: 0,
-      opacity: 1,
-    }}
-    transition={{
-      duration: .8,
-      type: 'spring'
-    }}
-  > */
-
-  // </motion.div>

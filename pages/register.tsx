@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { InputForm } from '../src/components/InputForm/component';
 import { InputField } from '../src/Ui/InputField/component';
-
 import { auth } from '../src/firebase-config';
-
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Register: NextPage = () => {
@@ -53,7 +51,7 @@ const Register: NextPage = () => {
         />
         
         <Flex w={'100%'} justifyContent={'center'}>
-          <Button mt={'5px'} onClick={onRegisterHandler}> Sign Up </Button>
+          <Button mt={'5px'} onClick={onRegisterHandler}>Sign Up</Button>
         </Flex>
     </InputForm>
   )

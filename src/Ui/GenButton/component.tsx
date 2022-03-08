@@ -9,8 +9,8 @@ interface IProps extends React.HTMLAttributes<HTMLElement>{
   onClickHandler?: (event: any) => void,
 }
 
-export const GenButton = ({ children, type, isRound, onClickHandler }: IProps ): JSX.Element => {
-
+export const GenButton = ({ children, type, onClickHandler }: IProps ): JSX.Element => {
+  
   if (type === 'light') {
     return (
       <Button
