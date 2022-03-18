@@ -1,5 +1,5 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,8 @@ import { useAuthStateChecker } from '../src/hooks/useAuthStateChecker/useAuthSta
 import { InputField } from '../src/Ui/InputField/component';
 
 const Home: NextPage = () => {
+
+  
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -22,6 +24,21 @@ const Home: NextPage = () => {
   const onRegisterHandler = () => {
     router.push('/register');
   }
+
+
+  useEffect(() => {
+    window.addEventListener('load', async () => {
+      if ('serviceWorker' in navigator) {
+        try {
+          const reg = await navigator.serviceWorker.register('./sw.js');
+          console.log('[SW]: Success', reg);
+        } catch (error) {
+          console.log('[SW]: Service worker are not enabled');
+        }
+      }
+    });
+  },[])
+
 
   const onLoginHandler = async () => {
     try {
